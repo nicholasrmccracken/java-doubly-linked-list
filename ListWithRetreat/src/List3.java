@@ -38,7 +38,7 @@ import components.list.ListSecondary;
  *    $this.postFinish.previous])
  * </pre>
  *
- * @author Put your name here
+ * @author Nicholas McCracken and Jack Mikesell
  *
  */
 public class List3<T> extends ListSecondary<T> {
@@ -184,9 +184,7 @@ public class List3<T> extends ListSecondary<T> {
      * No-argument constructor.
      */
     public List3() {
-
-        // TODO - fill in body
-
+        this.createNewRep();
         assert this.conventionHolds();
     }
 

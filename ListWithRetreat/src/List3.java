@@ -175,9 +175,15 @@ public class List3<T> extends ListSecondary<T> {
      * Creator of initial representation.
      */
     private void createNewRep() {
+        this.preStart = new Node();
+        this.postFinish = new Node();
 
-        // TODO - fill in body
+        this.preStart.next = this.postFinish;
+        this.postFinish.next = this.preStart;
+        this.lastLeft = this.preStart;
 
+        this.leftLength = 0;
+        this.rightLength = 0;
     }
 
     /**

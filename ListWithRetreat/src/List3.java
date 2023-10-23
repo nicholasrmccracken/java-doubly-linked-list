@@ -235,7 +235,29 @@ public class List3<T> extends ListSecondary<T> {
     public final void addRightFront(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        /*
+         * create new node to add to list and make q the node that will be
+         * before it.
+         */
+        Node newNode = new Node();
+        Node q = this.lastLeft;
+
+        /*
+         * add the data into the new node and have the new node point at the
+         * item that q was pointing to so it's now in between.
+         */
+        newNode.data = x;
+        newNode.next = q.next;
+
+        /*
+         * have the new node point backwards to q and have q point to the new
+         * node.
+         */
+        newNode.previous = q;
+        q.next = newNode;
+
+        // increment the right length because there's now another item
+        this.rightLength++;
 
         assert this.conventionHolds();
     }
@@ -244,18 +266,46 @@ public class List3<T> extends ListSecondary<T> {
     public final T removeRightFront() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
 
-        // TODO - fill in body
+        /*
+         * make p the last node in the left section of the list so the node to
+         * be removed will be the one directly after (right front).
+         */
+        Node p = this.lastLeft;
+        Node removed = p.next;
+
+        // have p now point to the node that removed is pointing at
+        p.next = removed.next;
+
+        // get the data from the removed node to return at the end
+        T data = removed.data;
+
+        // have the node after removed point backwards at p
+        removed.next.previous = p;
+
+        // decrement the right length because a node was removed
+        this.rightLength--;
 
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return null;
+        return data;
     }
 
     @Override
     public final void advance() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
 
-        // TODO - fill in body
+        /*
+         * make oldLastLeft the current last left and then make the new lastLeft
+         * the next node.
+         */
+        Node oldLastLeft = this.lastLeft;
+        this.lastLeft = oldLastLeft.next;
+
+        /*
+         * increment leftLength and decrement rightLength because a node from
+         * the right is now in the left section.
+         */
+        this.leftLength++;
+        this.rightLength--;
 
         assert this.conventionHolds();
     }
@@ -263,7 +313,15 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final void moveToStart() {
 
-        // TODO - fill in body
+        // have lastLeft point at the preStart smart node
+        this.lastLeft = this.preStart;
+
+        /*
+         * make the right length the entire length of the list and the
+         * leftLength 0 because there's now nothing in it.
+         */
+        this.rightLength += this.leftLength;
+        this.leftLength = 0;
 
         assert this.conventionHolds();
     }
@@ -271,21 +329,25 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final int leftLength() {
 
-        // TODO - fill in body
-
+        /*
+         * get the left length and check that the convention holds before
+         * returning it.
+         */
+        int length = this.leftLength;
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return 0;
+        return length;
     }
 
     @Override
     public final int rightLength() {
 
-        // TODO - fill in body
-
+        /*
+         * get the right length and check that the convention holds before
+         * returning it.
+         */
+        int length = this.rightLength;
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return 0;
+        return length;
     }
 
     @Override

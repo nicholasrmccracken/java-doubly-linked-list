@@ -753,6 +753,76 @@ public abstract class ListTest {
         assertEquals(list2, list1);
     }
 
-    // TODO - add test cases for retreat
+    @Test
+    public final void testRetreatLeftEmptyRightOne() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(1, "red");
+        List<String> list2 = this.createFromArgsRef(0, "red");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testRetreatLeftEmptyRightNonEmpty() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(1, "green", "red", "blue");
+        List<String> list2 = this.createFromArgsRef(0, "green", "red", "blue");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testRetreatLeftNonEmptyRightOne() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(4, "yellow", "orange",
+                "purple", "red");
+        List<String> list2 = this.createFromArgsRef(3, "yellow", "orange",
+                "purple", "red");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
+
+    @Test
+    public final void testRetreatLeftNonEmptyRightNonEmpty() {
+        /*
+         * Set up variables
+         */
+        List<String> list1 = this.createFromArgsTest(3, "yellow", "orange",
+                "green", "purple");
+        List<String> list2 = this.createFromArgsRef(2, "yellow", "orange",
+                "green", "purple");
+        /*
+         * Call method under test
+         */
+        list1.retreat();
+        /*
+         * Assert that values of variables match expectations
+         */
+        assertEquals(list2, list1);
+    }
 
 }
